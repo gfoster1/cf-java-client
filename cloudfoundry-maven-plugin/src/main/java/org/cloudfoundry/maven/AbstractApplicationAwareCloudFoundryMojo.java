@@ -191,6 +191,13 @@ abstract class AbstractApplicationAwareCloudFoundryMojo extends AbstractCloudFou
 	 */
 	private Boolean noStart;
 
+	/**
+	 * Do not create a route for the application
+	 *
+	 * @parameter expression="${cf.no-route}"
+	 */
+	private Boolean noRoute;
+
 	/** 
 	 * @parameter default-value="${localRepository}" 
 	 * @readonly
@@ -519,6 +526,16 @@ abstract class AbstractApplicationAwareCloudFoundryMojo extends AbstractCloudFou
 	 */
 	public Boolean isNoStart() {
 		return getBooleanValue(SystemProperties.NO_START, this.noStart, DefaultConstants.NO_START);
+	}
+
+	/**
+	 * If true, this property specifies that the application shall not create
+	 * a route for the application upon "push". If not set, this property defaults to <code>false</code>
+	 *
+	 * @return Never null
+	 */
+	public Boolean isNoRoute() {
+		return getBooleanValue(SystemProperties.NO_ROUTE, this.noRoute, DefaultConstants.NO_ROUTE);
 	}
 
 	public void createServices() throws MojoExecutionException {

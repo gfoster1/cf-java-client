@@ -36,6 +36,7 @@ public enum SystemProperties {
 	MEMORY("memory"),
 	MERGE_ENV("merge-env"),
 	NO_START("no-start"),
+	NO_ROUTE("no-route"),
 	ORG("org"),
 	PASSWORD("password"),
 	PATH("path"),

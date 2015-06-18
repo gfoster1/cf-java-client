@@ -235,6 +235,24 @@ public class AbstractApplicationAwareCloudFoundryMojoTest extends AbstractMojoTe
 
 	}
 
+	public void testGetNoRoute() throws Exception {
+
+		File testPom = new File( getBasedir(), "src/test/resources/test-pom.xml" );
+
+		Push unspiedMojo = (Push) lookupMojo ( "push", testPom );
+
+		Push mojo = spy(unspiedMojo);
+
+		/**
+		 * Injecting some test values as expressions are not evaluated.
+		 */
+		setVariableValueToObject( mojo, "noRoute", Boolean.TRUE );
+		doReturn(null).when(mojo).getCommandlineProperty(SystemProperties.NO_ROUTE);
+
+		assertEquals(Boolean.TRUE, mojo.isNoRoute());
+
+	}
+
 	private Push setupMojo() throws Exception {
 		File testPom = new File( getBasedir(), "src/test/resources/test-pom.xml" );
 
